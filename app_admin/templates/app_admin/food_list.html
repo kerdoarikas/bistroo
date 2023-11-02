@@ -1,0 +1,54 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+{% include "admin_menu.html" %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title d-flex justify-content-between align-items-center">
+                <h5 class="m-0">Toidud</h5>
+                <a class="btn btn-secondary" href="{% url 'app_admin:food_create' %}"><i class="fa-solid fa-plus"></i> Lisa uus</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover" id="dataTable">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Toidu nimetus</th>
+                    <th scope="col">Kategooria</th>
+                    <th scope="col">Kirjeldus</th>
+                    <th scope="col">Täishind</th>
+                    <th scope="col">Pool. hind</th>
+                    <th scope="col">Lihavaba</th>
+                    <th scope="col">Vegan</th>
+                    <th scope="col">Gluteenivaba</th>
+                    <th scope="col">Vürtsikas</th>
+                    <th scope="col">Toimingud</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for food in foods %}
+                <tr>
+                    <th scope="row">{{ food.id }}</th>
+                    <td>{{ food.food_name }}</td>
+                    <td>{{ food.food_category }}</td>
+                    <td>{{ food.description }}</td>
+                    <td>{% if food.full_price %} {{ food.full_price }} {% else %} Määramata {% endif %}</td>
+                    <td>{% if food.half_price %} {{ food.half_price }} {% else %} Määramata {% endif %}</td>
+                    <td>{% if food.is_vegetarian %} Jah {% else %} Ei {% endif %}</td>
+                    <td>{% if food.is_vegan %} Jah {% else %} Ei {% endif %}</td>
+                    <td>{% if food.is_gluten_free %} Jah {% else %} Ei {% endif %}</td>
+                    <td>{% if food.is_spicy %} Jah {% else %} Ei {% endif %}</td>
+                    <td>
+                        <a href="{% url 'app_admin:food_update' food.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{% url 'app_admin:food_delete' food.id %}"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div class="container pt-5 mt-5">
+    <div class="row mt-5 pt-5">
+    <div class="col-12">
+        <div class="d-flex justify-content-center">
+            <i class="display-1 fa-solid fa-triangle-exclamation"></i>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-center">
+            <h1 class="display-3">Oioi, kas oled kindel ?</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-center">
+            <p class="display-6">Kas oled kindel, et soovid "<strong>{{ food.food_name }}</strong>" toidu kututada? </p>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="d-flex justify-content-center">
+            <form method="post">
+                {% csrf_token %}
+                <button class ="btn btn-danger" type="submit">Jah, kustuta!</button>
+                <a class ="btn btn-secondary" href="{% url 'app_admin:food_list' %}">Ei! Tagasi ohutusse.</a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

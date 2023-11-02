@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Bistroo Haldamine</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+    <script type="module" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+{% block content %}
+
+{% endblock %}
+</body>
+<script>
+    new DataTable('#dataTable');
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get all form elements
+        var formElements = document.querySelectorAll("form input, form select, form button, form textarea");
+
+        // Loop through each form element and add Bootstrap classes
+        formElements.forEach(function(element) {
+            if (element.tagName === "INPUT" && element.type != "submit" && element.type != "checkbox") {
+                element.classList.add("form-control");
+            } else if (element.tagName === "SELECT") {
+                element.classList.add("form-select");
+            } else if (element.tagName === "TEXTAREA") {
+                element.classList.add("form-control");  // Apply form-control to textareas
+            } else if (element.tagName === "INPUT" && element.type === "checkbox") {
+                element.classList.remove("form-control");  // Remove form-control from checkboxes
+                // Optionally, you can add custom styling for checkboxes if needed
+            }
+        });
+    });
+</script>
+
+
+</html>
