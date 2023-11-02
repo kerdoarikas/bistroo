@@ -21,11 +21,24 @@ class Food(models.Model):
         return self.food_name
 
 class Menu(models.Model):
-    date = models.DateField()
+    menu_date = models.DateField()
     header1 = models.CharField(max_length=255, blank=True, null=True)
     header2 = models.CharField(max_length=255, blank=True, null=True)
     header3 = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"Menu for {self.date}"
+        return f"{self.menu_date}"
 
+class MenuCategory(models.Model):
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    name = models.ForeignKey('Category', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}, {self.menu}"
+
+class MenuFood(models.Model):
+    menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
+    name = models.ForeignKey('Food', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}, {self.menu_category}"
